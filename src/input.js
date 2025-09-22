@@ -22,7 +22,8 @@ export class InputManager {
   }
 
   handleKeyDown(event) {
-    const key = event.key.toLowerCase();
+    const key = this.normalizeKey(event.key);
+    if (!key) return;
     if (!this.down.has(key)) {
       this.pressed.add(key);
     }
@@ -30,7 +31,8 @@ export class InputManager {
   }
 
   handleKeyUp(event) {
-    const key = event.key.toLowerCase();
+    const key = this.normalizeKey(event.key);
+    if (!key) return;
     if (this.down.has(key)) {
       this.released.add(key);
     }
@@ -38,19 +40,36 @@ export class InputManager {
   }
 
   isDown(key) {
-    return this.down.has(key.toLowerCase());
+    const normalized = this.normalizeKey(key);
+    return normalized ? this.down.has(normalized) : false;
   }
 
   wasPressed(key) {
-    return this.pressed.has(key.toLowerCase());
+    const normalized = this.normalizeKey(key);
+    return normalized ? this.pressed.has(normalized) : false;
   }
 
   wasReleased(key) {
-    return this.released.has(key.toLowerCase());
+    const normalized = this.normalizeKey(key);
+    return normalized ? this.released.has(normalized) : false;
   }
 
   flush() {
     this.pressed.clear();
     this.released.clear();
+  }
+
+  normalizeKey(key) {
+    if (!key) return '';
+    const lower = key.toLowerCase();
+    switch (lower) {
+      case 'return':
+      case 'numpadenter':
+        return 'enter';
+      case 'spacebar':
+        return ' ';
+      default:
+        return lower;
+    }
   }
 }

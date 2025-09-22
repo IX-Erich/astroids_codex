@@ -46,12 +46,18 @@ export class Game {
       gameOver: document.getElementById('gameover-screen'),
       finalScore: document.getElementById('final-score'),
       finalHighScore: document.getElementById('final-high-score'),
-      startButton: document.querySelector('#menu-screen .primary'),
+      startButton: document.getElementById('start-button'),
     };
 
     if (this.hud.startButton) {
       this.hud.startButton.addEventListener('click', () => {
         this.startFromMenu();
+      });
+      this.hud.startButton.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+          event.preventDefault();
+          this.startFromMenu();
+        }
       });
     }
 
