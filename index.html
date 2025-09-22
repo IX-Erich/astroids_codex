@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asteroids Codex</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Roboto+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="hud">
+      <div class="hud-left">
+        <div class="hud-item">Score: <span id="hud-score">000000</span></div>
+        <div class="hud-item">High Score: <span id="hud-high-score">000000</span></div>
+      </div>
+      <div class="hud-right">
+        <div class="hud-item" id="hud-lives">Lives: 3</div>
+        <div class="hud-item" id="hud-mode">Mode: wireframe</div>
+        <div class="hud-item" id="hud-mute">Mute: Off</div>
+      </div>
+    </div>
+
+    <canvas id="game-canvas" width="1280" height="720"></canvas>
+
+    <div id="menu-screen" class="overlay">
+      <div class="panel">
+        <h1>Asteroids Codex</h1>
+        <p>Take command of the lone ship and clear the asteroid field.</p>
+        <div class="controls">
+          <h2>Controls</h2>
+          <ul>
+            <li><strong>Left / Right</strong> or <strong>A / D</strong> &mdash; Rotate</li>
+            <li><strong>Up</strong> or <strong>W</strong> &mdash; Thrust</li>
+            <li><strong>Space</strong> &mdash; Fire</li>
+            <li><strong>Shift</strong> &mdash; Hyperspace</li>
+            <li><strong>M</strong> &mdash; Toggle render mode</li>
+            <li><strong>P</strong> &mdash; Toggle mute</li>
+            <li><strong>Enter</strong> &mdash; Start</li>
+          </ul>
+        </div>
+        <button class="primary" type="button">Press Enter to Start</button>
+      </div>
+    </div>
+
+    <div id="gameover-screen" class="overlay" style="display: none">
+      <div class="panel">
+        <h1>Game Over</h1>
+        <p>Your final score: <span id="final-score">000000</span></p>
+        <p>High score: <span id="final-high-score">000000</span></p>
+        <p>Press Enter to try again.</p>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
