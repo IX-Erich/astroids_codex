@@ -54,7 +54,13 @@ export class Game {
         this.startFromMenu();
       });
       this.hud.startButton.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+        if (
+          event.key === 'Enter' ||
+          event.key === 'NumpadEnter' ||
+          event.key === ' ' ||
+          event.key === 'Space' ||
+          event.key === 'Spacebar'
+        ) {
           event.preventDefault();
           this.startFromMenu();
         }
@@ -122,7 +128,7 @@ export class Game {
   }
 
   handleInput() {
-    if (this.input.wasPressed('enter') || this.input.wasPressed('return')) {
+    if (this.input.wasPressed('enter')) {
       this.startFromMenu();
     }
 
@@ -137,7 +143,7 @@ export class Game {
       this.toggleRenderMode();
     }
 
-    if (this.input.wasPressed(' ') || this.input.wasPressed('spacebar') || this.input.wasPressed('space')) {
+    if (this.input.wasPressed('space')) {
       if (this.state === 'playing') {
         const activeBullets = this.playerBullets.filter((b) => b.alive).length;
         if (activeBullets < MAX_PLAYER_BULLETS) {

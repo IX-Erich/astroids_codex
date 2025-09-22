@@ -61,13 +61,20 @@ export class InputManager {
 
   normalizeKey(key) {
     if (!key) return '';
+
+    if (key === ' ') {
+      return 'space';
+    }
+
     const lower = key.toLowerCase();
     switch (lower) {
       case 'return':
       case 'numpadenter':
+      case 'enter':
         return 'enter';
       case 'spacebar':
-        return ' ';
+      case 'space':
+        return 'space';
       default:
         return lower;
     }
